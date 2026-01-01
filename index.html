@@ -12,13 +12,7 @@
       padding-top: 100px;
     }
 
-    #countdown {
-      font-size: 3rem;
-      margin-bottom: 30px;
-    }
-
     #popup {
-      display: none;
       background: #1e293b;
       padding: 30px;
       border-radius: 10px;
@@ -32,8 +26,7 @@
 </head>
 <body>
 
-  <h1> Countdown to K-Files (Central Time) </h1>
-  <div id="countdown">Loading...</div>
+  <h1> K-Files (Central Time) </h1>
 
   <div id="popup">
     <h2> Happy New Year! </h2>
@@ -44,49 +37,6 @@
     </p>
   </div>
 
-  <script>
-    function getCentralTimeNow() {
-      // Get current time in Central Time using Intl
-      const now = new Date();
-      const centralTimeString = now.toLocaleString("en-US", {
-        timeZone: "America/Chicago"
-      });
-      return new Date(centralTimeString);
-    }
-
-    function getNextNewYearCT() {
-      const nowCT = getCentralTimeNow();
-      const year = nowCT.getFullYear() + 1;
-      return new Date(`${year}-01-01T00:00:00`);
-    }
-
-    const newYear = getNextNewYearCT();
-    const countdownEl = document.getElementById("countdown");
-    const popupEl = document.getElementById("popup");
-
-    function updateCountdown() {
-      const nowCT = getCentralTimeNow();
-      const diff = newYear - nowCT;
-
-      if (diff <= 0) {
-        countdownEl.style.display = "none";
-        popupEl.style.display = "block";
-        clearInterval(timer);
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((diff / (1000 * 60)) % 60);
-      const seconds = Math.floor((diff / 1000) % 60);
-
-      countdownEl.textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateCountdown();
-    const timer = setInterval(updateCountdown, 1000);
-  </script>
-
 </body>
 </html>
+
